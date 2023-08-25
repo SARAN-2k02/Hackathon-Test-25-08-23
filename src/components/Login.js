@@ -21,14 +21,18 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const HandleSubmit = (event) => {
+    alert("hey");
     event.preventDefault();
-    // You can perform login logic here using the 'email' and 'password' values
-    // console.log("handleSubmit, happened");
-    console.log("name :", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    setheading(name);
+
+    if (name === " " || email === " " || password === " ") {
+      alert("Please enter the details");
+    } else {
+      console.log("name :", name);
+      console.log("Email:", email);
+      console.log("Password:", password);
+      setheading(name);
+    }
   };
 
   function navigateProducts() {
@@ -36,42 +40,50 @@ function Login() {
   }
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="main-form" onSubmit={HandleSubmit}>
         <div>
           <h1>LOGIN PAGE</h1>
           <h2>{heading}</h2>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="name"
-            id="name"
-            value={name}
-            onChange={handleName}
-            required
-          />
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
+          <div>
+            <label htmlFor="name">Name:</label>
+
+            <input
+              type="name"
+              id="name"
+              value={name}
+              onChange={handleName}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="login-btn"
+            onClick={navigateProducts}
+          >
+            Login
+          </button>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <button type="submit" onClick={navigateProducts}>
-          Login
-        </button>
-        <p>{name}</p>
       </form>
     </div>
   );
